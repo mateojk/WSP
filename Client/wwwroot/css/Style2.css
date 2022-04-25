@@ -68,6 +68,13 @@
     text-align: center;
 }
 
+.tile10 {
+    margin: 10px;
+    width: 460px;
+    height: 142px;
+    background-color: #666666;
+}
+
 .yt {
     margin: 10px;
     width: 105px;
