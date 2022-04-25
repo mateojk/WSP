@@ -68,20 +68,11 @@
     text-align: center;
 }
 
-.tile4 {
-    margin: 10px;
-    width: 480px;
-    height: 142px;
-    background-color: #ee5a32;
-    text-align: center;
-    font-size: 26px;
-    padding: 30px;
-}
 
 .tile5 {
     margin: 10px;
     width: 480px;
-    height: 304px;
+    height: 142px;
     background-color: #666666;
     text-align: center;
 }
