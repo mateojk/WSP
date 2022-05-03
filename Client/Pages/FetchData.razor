@@ -1,87 +1,45 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
 
-<h1>Weather forecast</h1>
+<link rel="stylesheet" href="css/Style3.css" type="text/css" />
 
-<p>This component demonstrates fetching data from the server.</p>
+<h1>Punches: @punchCount</h1>
 
-@if (forecasts == null)
+
+@if (imageSource is not null)
 {
-    <p><em>Loading...</em></p>
+    <div>
+        <img src="@imageSource" />
+    </div>
 }
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+
+
+<button class="btn btn-primary" @onclick="() => ShowImage()">
+    Click to punch
+</button>
+
+
 
 @code {
-    private WeatherForecast[] forecasts;
+    int imageId = 1;
+    int punchCount = 0;
+    private string? imageSource = $"images/1.jpg";
 
-    protected override async Task OnInitializedAsync()
+    private void ShowImage()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        imageId++;
+        if (imageId == 22)
+        {
+            imageId = 1;
+            punchCount++;
+        }
+        imageSource = $"images/{imageId}.jpg";
     }
 
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
 }
 
 
 
-@*@for (int i = 0; i < 5; i++)
-    {
-        <p>Welcome to your new app.</p>
-    }*@
-@*<h1>Mateusz Koniuch</h1>
-    <p>Numer albumu - 110893</p>
-    Welcome to your new app.
-    <SurveyPrompt Title="How is Blazor working for you?" />*@
-@*<div>
-
-    </div>*@
 
 
-
-
-
-
-@*<<<<<<< HEAD
-@*<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>*@
-
-@*@code {a
-        private int currentCount = 0;
-
-        private void IncrementCount()
-        {
-            currentCount++;
-        }
-    }*@
 
